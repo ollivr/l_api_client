@@ -1,7 +1,22 @@
-import { Component } from "solid-js";
+import { Component, lazy } from "solid-js";
+import { Routes, Route } from "solid-app-router";
+
+import { Header } from "./components/Header"
+
+const HomePage = lazy(() => import("./pages/HomePage"));
+const ProductDetail = lazy(() => import("./pages/ProductDetail"));
+
 
 const App: Component = () => {
-  return <div>Hello there from Tailwind and Typescript.</div>;
+    return (
+        <div>
+            <Header />
+            <Routes>
+                <Route path="/detail/:id" element={<ProductDetail />} />
+                <Route path="/" element={<HomePage />} />
+            </Routes>
+        </div>
+    );
 };
 
 export default App;
